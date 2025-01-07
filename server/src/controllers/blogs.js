@@ -1,11 +1,11 @@
 export const getBlog = (req, res) =>   {
   res.json({
-    message: "this is the home route",
+    message: "this is are all the blogs",
   });
 }
 
 export const addBlog = (req, res) => {
     res.json({
-      message: "this is getting a blog",
+      message: "blog added successfully",
     });
   }
