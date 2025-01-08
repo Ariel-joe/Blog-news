@@ -13,9 +13,10 @@ const blogRouter = Router();
 blogRouter
   .route("/blogs")
   .get(getBlog)
-  .post(singleBlog)
   .post(userAuthentication, addBlog)
   .patch(userAuthentication, editBlog)
   .delete(userAuthentication, removeBlog);
+
+blogRouter.get("/blogs/single", singleBlog)
 
 export { blogRouter };
