@@ -4,12 +4,12 @@ import { getHome } from "./controllers/home.js";
 import { blogRouter } from "./routes/blogRoute.js";
 import { userAuthentication } from "./middleware/Auth.js";
 import { usersRouter } from "./routes/usersRoute.js";
-// import { connectDB } from "./database/config.js";
+import { connectDB } from "./database/config.js";
 
 const app = express();
 app.use(express.json());
 
-// connectDB();
+connectDB();
 
 const port = process.env.PORT; 
 
