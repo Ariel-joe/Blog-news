@@ -2,7 +2,7 @@
 
 
 export const userAuthentication = (req, res, next) => {
-    const isAuthenticated = false;
+    const isAuthenticated = true;
     if (isAuthenticated) {
         next();
   } else {

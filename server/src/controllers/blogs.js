@@ -1,4 +1,4 @@
-import { Blog } from "../middleware/models/blog.js";
+import { Blog } from "../database/models/blog.js";
 
 // getting all blogs
 export const getBlog = async (req, res) => {
@@ -23,13 +23,13 @@ export const addBlog = async (req, res) => {
   try {
     const newBlog = await  Blog.create(req.body)
 
-    return res.Status(201).json({
+    return res.status(201).json({
       success: true,
       message: newBlog
     })
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.Status(500).json({
       success: false,
       message: "Failed",
     });

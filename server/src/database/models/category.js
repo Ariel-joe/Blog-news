@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 const categorySchema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String },
   status: { type: String, enum: ["active", "inactive"], default: "active" },
 });
 
