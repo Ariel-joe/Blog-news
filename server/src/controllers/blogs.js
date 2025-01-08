@@ -1,11 +1,37 @@
-export const getBlog = (req, res) =>   {
-  res.json({
-    message: "this is are all the blogs",
-  });
-}
+import { Blog } from "../middleware/models/blog.js";
 
-export const addBlog = (req, res) => {
-    res.json({
-      message: "blog added successfully",
+// getting all blogs
+export const getBlog = async (req, res) => {
+  try {
+    const blogs = await Blog.find();
+
+    res.status(200).json({
+      success: true,
+      data: blogs,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed",
     });
   }
+};
+
+// adding a blog
+export const addBlog = async (req, res) => {
+  try {
+    const newBlog = await  Blog.create(req.body)
+
+    return res.Status(201).json({
+      success: true,
+      message: newBlog
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed",
+    });
+  }
+};
