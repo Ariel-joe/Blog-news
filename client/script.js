@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const getAllArticles = async () => {
   // Reaching out to the backend API and fetching all the articles
 
-  const response = await fetch("http://localhost:3005/api/blogs");
+  const response = await fetch("http://localhost:8080/api/blogs");
 
   if (response.ok) {
     // The request was successful, no errors were returned by the server
