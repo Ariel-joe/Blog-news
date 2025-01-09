@@ -58,7 +58,7 @@ const getSingleArticle = async () => {
   const articleID = urlParams.get("id");
 
   const response = await fetch(
-    `http://localhost:3005/api/blogs/single?id=${articleID}`
+    `http://localhost:8080/api/blogs/single?id=${articleID}`
   );
 
   const jsonResponse = await response.json();
