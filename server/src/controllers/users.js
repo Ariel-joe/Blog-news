@@ -3,3 +3,4 @@ export const getUsers = (req, res) => {
         message: "this are all the users"
     })
 }
+ 
