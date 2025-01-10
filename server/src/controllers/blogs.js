@@ -3,15 +3,26 @@ import { Blog } from "../database/models/blog.js";
 // adding a blog
 export const addBlog = async (req, res) => {
   try {
-    const newBlog = await Blog.create(req.body);
+    const { title, description, image, content } = req.body;
+    const blogData = {
+      title,
+      description,
+      image,
+      content,
+    };
+    const newBlog = new Blog(blogData);
+
+    await newBlog.save();
+
 
     return res.status(201).json({
       success: true,
-      message: newBlog,
+      message: "blog added successfully",
     });
-  } catch (error) {
+  } 
+  catch (error) {
     console.log(error);
-    res.Status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed",
     });
@@ -25,7 +36,7 @@ export const singleBlog = async (req, res) => {
 
     const article = await Blog.findOne({ _id: blogId }, req.body);
 
-    res.json({
+    return res.json({
       succcess: true,
       data: article,
     });
@@ -43,13 +54,13 @@ export const getBlog = async (req, res) => {
   try {
     const blogs = await Blog.find();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: blogs,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed",
     });
@@ -65,12 +76,12 @@ export const editBlog = async (req, res) => {
       new: true,
     });
 
-    res.json({
+    return res.json({
       success: true,
       data: article,
     });
   } catch (e) {
-    res.json({
+    return res.json({
       success: false,
       message: "Error try again!",
     });
@@ -84,13 +95,13 @@ export const removeBlog = async (req, res) => {
 
     const deletedBlog = await Blog.deleteOne({ _id: blogId });
 
-    res.json({
+    return res.json({
       success: true,
       deletedCount: deletedBlog.deletedCount,
     });
   } catch (error) {
     console.log(error);
-    return res.status.json({
+    return res.status(500).json({
       success: false,
       message: error,
     });
