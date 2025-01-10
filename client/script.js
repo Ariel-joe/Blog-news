@@ -10,10 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (url.pathname.includes("article")) {
     getSingleArticle();
   }
-
-  if (url.pathname.includes("new-blog")) {
-    addArticle();
-  }
 });
 
 const getAllArticles = async () => {
@@ -51,9 +47,7 @@ const getAllArticles = async () => {
 
     articleOutputDiv.innerHTML = articlesHTMLOutput;
   } else {
-    // Handle the error
     console.error("Error fetching articles:", error);
-
   }
 };
 
@@ -78,33 +72,53 @@ const getSingleArticle = async () => {
   `;
 };
 
-const addArticle = async () => {
-  // Article data to be sent to the server
-  const articleData = {
-    title: "front-end test 1",
-    description: "this is the front-end blog",
-    image: "https://img-global.cpcdn.com/recipes/d0637a8caa92816a/680x482cq70/chapati-recipe-main-photo.jpg",
-    content: "front-end blog test 1",
-  };
-
+const addArticle = async (articleData) => {
   try {
-    // Sending the POST request to the server
     const response = await fetch("http://localhost:8080/api/blogs", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Important header
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(articleData), // Stringify the JSON data
+      body: JSON.stringify(articleData),
     });
 
-    // Parsing the response
     const jsonResponse = await response.json();
 
-    // Logging the server response
-    console.log(jsonResponse);
+    if (response.ok) {
+      console.log("Article added successfully:", jsonResponse);
+      alert("Article added successfully!");
+      document.getElementById("articleForm").reset();
+    } else {
+      console.error("Error adding article:", jsonResponse);
+      alert(
+        "Failed to add article: " + (jsonResponse.message || "Unknown error")
+      );
+    }
   } catch (error) {
     console.error("Error while adding article:", error);
+    alert("Failed to add article: " + error.message);
   }
 };
 
+const submitForm = (event) => {
+  event.preventDefault();
 
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const image = document.getElementById("image").value.trim();
+  const content = document.getElementById("content").value.trim();
+
+  if (!title || !description || !image || !content) {
+    alert("All fields are required!");
+    return;
+  }
+
+  const articleData = { title, description, image, content };
+
+  addArticle(articleData);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("articleForm");
+  form.addEventListener("submit", submitForm);
+});
