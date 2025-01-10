@@ -14,14 +14,38 @@
       </ul>
     </nav>
 
-    <form>
-      <input type="text" />
-      <input type="text" />
-      <input type="text" />
-      <textarea name="" id="" rows="10"></textarea>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add Article</title>
+      </head>
+      <body>
+        <form id="articleForm">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required /><br /><br />
 
-      <button type="submit">Add Blog</button>
-    </form>
+          <label for="description">Description:</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            required
+          /><br /><br />
+
+          <label for="image">Image URL:</label>
+          <input type="url" id="image" name="image" required /><br /><br />
+
+          <label for="content">Content:</label>
+          <textarea id="content" name="content" required></textarea><br /><br />
+
+          <button type="submit">Add Article</button>
+        </form>
+
+        <script src="app.js"></script>
+      </body>
+    </html>
 
     <script src="script.js"></script>
   </body>

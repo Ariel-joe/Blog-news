@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (url.pathname.includes("article")) {
     getSingleArticle();
   }
+
+  if (url.pathname.includes("new-blog")) {
+    addArticle();
+  }
 });
 
 const getAllArticles = async () => {
@@ -48,6 +52,8 @@ const getAllArticles = async () => {
     articleOutputDiv.innerHTML = articlesHTMLOutput;
   } else {
     // Handle the error
+    console.error("Error fetching articles:", error);
+
   }
 };
 
@@ -71,3 +77,34 @@ const getSingleArticle = async () => {
     <p>${article.content}</p>
   `;
 };
+
+const addArticle = async () => {
+  // Article data to be sent to the server
+  const articleData = {
+    title: "front-end test 1",
+    description: "this is the front-end blog",
+    image: "https://img-global.cpcdn.com/recipes/d0637a8caa92816a/680x482cq70/chapati-recipe-main-photo.jpg",
+    content: "front-end blog test 1",
+  };
+
+  try {
+    // Sending the POST request to the server
+    const response = await fetch("http://localhost:8080/api/blogs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Important header
+      },
+      body: JSON.stringify(articleData), // Stringify the JSON data
+    });
+
+    // Parsing the response
+    const jsonResponse = await response.json();
+
+    // Logging the server response
+    console.log(jsonResponse);
+  } catch (error) {
+    console.error("Error while adding article:", error);
+  }
+};
+
+
