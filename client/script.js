@@ -86,14 +86,19 @@ const addArticle = async (articleData) => {
     const jsonResponse = await response.json();
 
     if (response.ok) {
-      document.getElementById("success").innerText = "Article added successfully!"
+      document.getElementById("success").innerText =
+        "Article added successfully!";
 
-      setTimeout(()=> {
-        document.getElementById("success").innerText = ""
-      }, 2000)
+      setTimeout(() => {
+        document.getElementById("success").innerText = "";
+      }, 2000);
       document.getElementById("articleForm").reset();
     } else {
-      document.getElementById("fail").innerText = "Failed to add article!"
+      document.getElementById("fail").innerText = "Failed to add article!";
+
+      setTimeout(() => {
+        document.getElementById("fail").innerText = "";
+      }, 2000);
       console.error("Error adding article:", jsonResponse);
     }
   } catch (error) {
