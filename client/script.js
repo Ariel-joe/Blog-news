@@ -103,7 +103,11 @@ const addArticle = async (articleData) => {
     }
   } catch (error) {
     console.error("Error while adding article:", error);
-    alert("Failed to add article: " + error.message);
+    document.getElementById("fail").innerText = "Failed to add article!";
+
+    setTimeout(() => {
+      document.getElementById("fail").innerText = "";
+    }, 2000);
   }
 };
 
