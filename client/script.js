@@ -82,17 +82,19 @@ const addArticle = async (articleData) => {
       body: JSON.stringify(articleData),
     });
     console.log(response);
-    
+
     const jsonResponse = await response.json();
 
-    if (response.ok) {  
-      alert("Article added successfully!");
+    if (response.ok) {
+      document.getElementById("success").innerText = "Article added successfully!"
+
+      setTimeout(()=> {
+        document.getElementById("success").innerText = ""
+      }, 2000)
       document.getElementById("articleForm").reset();
     } else {
+      document.getElementById("fail").innerText = "Failed to add article!"
       console.error("Error adding article:", jsonResponse);
-      alert(
-        "Failed to add article: " + (jsonResponse.message || "Unknown error")
-      );
     }
   } catch (error) {
     console.error("Error while adding article:", error);
@@ -114,8 +116,6 @@ const submitForm = (event) => {
 
   const articleData = { title, description, image, content };
 
-  // const {title, description, image, content} = req.body
-
   addArticle(articleData);
 };
 
@@ -123,5 +123,3 @@ const submitForm = (event) => {
 //   const form = document.getElementById("articleForm");
 //   form.addEventListener("submit", submitForm);
 // });
-
-
