@@ -81,11 +81,11 @@ const addArticle = async (articleData) => {
       },
       body: JSON.stringify(articleData),
     });
-
+    console.log(response);
+    
     const jsonResponse = await response.json();
 
-    if (response.ok) {
-      console.log("Article added successfully:", jsonResponse);
+    if (response.ok) {  
       alert("Article added successfully!");
       document.getElementById("articleForm").reset();
     } else {
@@ -109,16 +109,19 @@ const submitForm = (event) => {
   const content = document.getElementById("content").value.trim();
 
   if (!title || !description || !image || !content) {
-    alert("All fields are required!");
-    return;
+    return alert("All fields are required!");
   }
 
   const articleData = { title, description, image, content };
 
+  // const {title, description, image, content} = req.body
+
   addArticle(articleData);
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("articleForm");
-  form.addEventListener("submit", submitForm);
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   const form = document.getElementById("articleForm");
+//   form.addEventListener("submit", submitForm);
+// });
+
+
