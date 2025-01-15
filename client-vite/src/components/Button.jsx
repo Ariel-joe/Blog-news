@@ -1,5 +1,3 @@
-import React from "react";
-
 const Button = (props) => {
   console.log(props);
 
@@ -17,6 +15,6 @@ const Button = (props) => {
       </button>
     </>
   );
-}; 
+};
 
 export { Button };
