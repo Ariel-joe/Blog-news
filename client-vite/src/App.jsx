@@ -1,13 +1,21 @@
-import { Button } from "./components/Button.jsx";
+import { useState } from "react";
+import { Button } from "./components/Button/Button";
 
 const App = () => {
+  const [count, setCount] = useState(7);
+
+  const updateCount = () => {
+    console.log("Update clicked");
+
+    setCount(count + 1);
+    // console.log({ count: count });
+  };
+
   return (
     <>
-      <Button bgColor="green">Button 1</Button>
-      <Button>Button 2</Button>
-      <Button bgColor="red">Button 3</Button>
-      <Button>Button 4</Button>
-      <Button>Submit</Button>
+      <Button count={count} updateCount={updateCount}>
+        Click Me
+      </Button>
     </>
   );
 };
