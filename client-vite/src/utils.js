@@ -1,4 +1,9 @@
-// const function2 = (p, subF1) => {
+// const function2 = (
+//   p,
+//   subF1 = () => {
+//     return null;
+//   }
+// ) => {
 //   console.log(p);
 //   subF1();
 // };
@@ -10,7 +15,7 @@
 //     console.log("I need to be called from function 2");
 //   };
 
-//   function2(v, subFunction1);
+//   function2(v);
 // };
 
 // function formSubmit () {}
