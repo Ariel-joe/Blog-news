@@ -1,14 +1,18 @@
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
-import { IoIosArrowRoundForward } from "react-icons/io";
 
 import { useEffect, useState } from "react";
 import { Header } from "./components/Header";
+import { ArticleCard } from "./components/ArticleCard";
+import { DataBinding } from "./components/DataBinding";
 
 const App = () => {
   const [articles, setArticles] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
+    console.log("First useEffect has been executed");
+
     const fetchArticles = async () => {
       const response = await fetch("http://localhost:3005/api/blogs");
 
@@ -16,11 +20,17 @@ const App = () => {
         const { data, success } = await response.json();
 
         setArticles(data);
+      } else {
+        // Error handling
       }
     };
 
     fetchArticles();
   }, []);
+
+  useEffect(() => {
+    console.log("Count has been updated");
+  }, [count]);
 
   return (
     <div className="h-screen w-full flex">
@@ -49,25 +59,8 @@ const App = () => {
         </div>
 
         <div className="content flex flex-wrap gap-4 px-4 py-4 mt-20">
-          {articles.map(({ title, image, description, _id }, i) => (
-            <div
-              key={i}
-              className="card w-[32%] border p-4 shadow-lg space-y-3"
-            >
-              <div className="image">
-                <img className="w-full" src={image} alt="Blog Image" />
-              </div>
-              <h2 className="title text-2xl font-semibold">{title}</h2>
-              <p className="description">{description}</p>
-              <div className="flex justify-end">
-                <a
-                  className="readMore flex items-center p-2 hover:shadow-lg duration-150 text-blue-500"
-                  href={`/article/${_id}`}
-                >
-                  Read More <IoIosArrowRoundForward />
-                </a>
-              </div>
-            </div>
+          {articles.map((article, i) => (
+            <ArticleCard key={i} article={article} />
           ))}
         </div>
       </main>
