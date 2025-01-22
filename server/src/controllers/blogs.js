@@ -14,13 +14,11 @@ export const addBlog = async (req, res) => {
 
     await newBlog.save();
 
-
     return res.status(201).json({
       success: true,
       message: "blog added successfully",
     });
-  } 
-  catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({
       success: false,
@@ -95,7 +93,7 @@ export const removeBlog = async (req, res) => {
 
     const deletedBlog = await Blog.deleteOne({ _id: blogId });
 
-    return res.json({
+    return res.json({ 
       success: true,
       deletedCount: deletedBlog.deletedCount,
     });

@@ -14,9 +14,15 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const corsOptions = {
-  origin: ["http://127.0.0.1:5500"],
+  origin: [
+    "http://127.0.0.1:8080",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+  ],
 };
+
 app.use(cors(corsOptions));
+
 
 connectDB();
 
