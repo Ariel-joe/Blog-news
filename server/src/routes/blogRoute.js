@@ -4,6 +4,7 @@ import {
   editBlog,
   getBlog,
   removeBlog,
+  searchBlog,
   singleBlog,
 } from "../controllers/blogs.js";
 import { userAuthentication } from "../middleware/Auth.js";
@@ -17,6 +18,8 @@ blogRouter
   .patch(userAuthentication, editBlog)
   .delete(userAuthentication, removeBlog);
 
-blogRouter.get("/blogs/single", singleBlog)
+blogRouter.get("/blogs/single", singleBlog);
+
+blogRouter.get("/blogs/search", searchBlog);
 
 export { blogRouter };

@@ -38,6 +38,26 @@ export const singleBlog = async (req, res) => {
   }
 };
 
+// Search for blog
+export const searchBlog = async (req, res) => {
+  try {
+    const blogs = await Blog.find({
+      title: { $regex: req.query.title, $options: "i" },
+    });
+
+    res.json({
+      success: true,
+      data: blogs,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed",
+    });
+  }
+};
+
 // getting all blogs
 export const getBlog = async (req, res) => {
   try {
