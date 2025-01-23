@@ -6,29 +6,41 @@ import { ArticleCard } from "./components/ArticleCard";
 
 const App = () => {
   const [articles, setArticles] = useState([]);
-  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+  const [valueOnScreen, setValueOnScreen] = useState("value on screen");
 
+  // // effect for the search bar
   useEffect(() => {
-    console.log("First useEffect has been executed");
+    const searchingArticles = async (searchText) => {
+      try {
+        const searchedArticle = await fetch(`http://localhost:8080/api/blogs?search=${encodeURIComponent(searchText)}`);
+
+          const result = await searchedArticle.json();
+          setValueOnScreen(result.data);
+        } catch (error) {
+          console.error("failed to fetch", error);
+        }
+      } 
+      searchingArticles();
+
+    }, [text]);
+
+  // {*/ effect for fetching articles for homepage */}
+  useEffect(() => {
 
     const fetchArticles = async () => {
       const response = await fetch("http://localhost:8080/api/blogs");
 
-      if (response.ok) {
-        const { data, success } = await response.json();
+        const result = await response.json();
+ 
+        setArticles(result.data);
 
-        setArticles(data);
-      } else {
-        // Error handling
-      }
     };
 
     fetchArticles();
   }, []);
 
-  useEffect(() => {
-    console.log("Count has been updated");
-  }, [count]);
+  
 
   return (
     <div className="h-screen w-full flex">
@@ -39,8 +51,8 @@ const App = () => {
           <form>
             <input
               type="text"
-              name="search"
-              id="search"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
               placeholder="Search blogs..."
               className="border p-2 w-[300px]"
             />
@@ -57,7 +69,7 @@ const App = () => {
         </div>
 
         <div className="content flex flex-wrap gap-4 px-4 py-4 mt-20">
-          {articles.map((article, i) => (
+        {articles.map((article, i) => (
             <ArticleCard key={i} article={article} />
           ))}
         </div>
