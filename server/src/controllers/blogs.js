@@ -109,11 +109,12 @@ export const removeBlog = async (req, res) => {
 // searching for a single blog
 
 export const singleArticleSearch = async (req, res) => {
-  const title = req.query.title;
   try {
-    const searchedArticle = Blog.findOne({ title: title }, req.body);
+    const searchedArticle = await Blog.find({
+      title: { $regex: req.query.title, $options: "i" },
+    });
 
-    return res.status(200).json({
+    return res.json({
       succcess: true,
       data: searchedArticle,
     });
