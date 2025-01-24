@@ -93,9 +93,29 @@ export const removeBlog = async (req, res) => {
 
     const deletedBlog = await Blog.deleteOne({ _id: blogId });
 
-    return res.json({ 
+    return res.json({
       success: true,
       deletedCount: deletedBlog.deletedCount,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: error,
+    });
+  }
+};
+
+// searching for a single blog
+
+export const singleArticleSearch = async (req, res) => {
+  const title = req.query.title;
+  try {
+    const searchedArticle = Blog.findOne({ title: title }, req.body);
+
+    return res.status(200).json({
+      succcess: true,
+      data: searchedArticle,
     });
   } catch (error) {
     console.log(error);
