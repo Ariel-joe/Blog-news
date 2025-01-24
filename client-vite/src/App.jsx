@@ -15,12 +15,12 @@ const App = () => {
     const searchingArticles = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/blogs/title?search=${searchText}`
+          `http://localhost:8080/api/blogs/search?title=${searchText}`
         );
 
         if (response.ok) {
           const { data, success } = await response.json();
-          setValueOnScreen(data);
+          setArticles(data);
         }
       } catch (error) {
         console.error("failed to fetch", error);
@@ -51,8 +51,8 @@ const App = () => {
           <form>
             <input
               type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              value={searchText}
+              onChange={(e) => setsearchText(e.target.value)}
               placeholder="Search blogs..."
               className="border p-2 w-[300px]"
             />
@@ -69,8 +69,8 @@ const App = () => {
         </div>
 
         <div className="content flex flex-wrap gap-4 px-4 py-4 mt-20">
-          {articles.map((article) => (
-            <div key={article.id}>{article.title}</div>
+          {articles.map((article, i) => (
+            <ArticleCard key={i} article={article} />
           ))}
         </div>
       </main>
