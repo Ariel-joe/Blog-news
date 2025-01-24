@@ -6,27 +6,28 @@ import { ArticleCard } from "./components/ArticleCard";
 
 const App = () => {
   const [articles, setArticles] = useState([]);
-  const [text, setText] = useState("");
-  const [valueOnScreen, setValueOnScreen] = useState("value on screen");
+  const [searchText, setsearchText] = useState("");
 
   // // effect for the search bar
   useEffect(() => {
     console.log("searching...");
-    
-    const searchingArticles = async (searchText) => {
+
+    const searchingArticles = async () => {
       try {
         const response = await fetch(
           `http://localhost:8080/api/blogs/title?search=${searchText}`
         );
 
-        const result = await response.json();
-        setValueOnScreen(result.data || []);
+        if (response.ok) {
+          const { data, success } = await response.json();
+          setValueOnScreen(data);
+        }
       } catch (error) {
         console.error("failed to fetch", error);
       }
     };
-    searchingArticles(text);
-  }, [text]);
+    searchingArticles();
+  }, [searchText]);
 
   // {*/ effect for fetching articles for homepage */}
   useEffect(() => {
@@ -68,7 +69,7 @@ const App = () => {
         </div>
 
         <div className="content flex flex-wrap gap-4 px-4 py-4 mt-20">
-          {valueOnScreen.map((article) => (
+          {articles.map((article) => (
             <div key={article.id}>{article.title}</div>
           ))}
         </div>
