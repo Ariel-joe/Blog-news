@@ -11,36 +11,35 @@ const App = () => {
 
   // // effect for the search bar
   useEffect(() => {
+    console.log("searching...");
+    
     const searchingArticles = async (searchText) => {
       try {
-        const searchedArticle = await fetch(`http://localhost:8080/api/blogs?search=${encodeURIComponent(searchText)}`);
+        const response = await fetch(
+          `http://localhost:8080/api/blogs/title?search=${searchText}`
+        );
 
-          const result = await searchedArticle.json();
-          setValueOnScreen(result.data);
-        } catch (error) {
-          console.error("failed to fetch", error);
-        }
-      } 
-      searchingArticles();
-
-    }, [text]);
+        const result = await response.json();
+        setValueOnScreen(result.data || []);
+      } catch (error) {
+        console.error("failed to fetch", error);
+      }
+    };
+    searchingArticles(text);
+  }, [text]);
 
   // {*/ effect for fetching articles for homepage */}
   useEffect(() => {
-
     const fetchArticles = async () => {
       const response = await fetch("http://localhost:8080/api/blogs");
 
-        const result = await response.json();
- 
-        setArticles(result.data);
+      const result = await response.json();
 
+      setArticles(result.data);
     };
 
     fetchArticles();
   }, []);
-
-  
 
   return (
     <div className="h-screen w-full flex">
@@ -69,8 +68,8 @@ const App = () => {
         </div>
 
         <div className="content flex flex-wrap gap-4 px-4 py-4 mt-20">
-        {articles.map((article, i) => (
-            <ArticleCard key={i} article={article} />
+          {valueOnScreen.map((article) => (
+            <div key={article.id}>{article.title}</div>
           ))}
         </div>
       </main>
