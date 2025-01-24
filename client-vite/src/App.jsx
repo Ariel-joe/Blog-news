@@ -3,10 +3,12 @@ import { CiUser } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { ArticleCard } from "./components/ArticleCard";
+import { useDebounce } from "use-debounce";
 
 const App = () => {
   const [articles, setArticles] = useState([]);
   const [searchText, setsearchText] = useState("");
+  const [debouncedText] = useDebounce(searchText, 2000)
 
   // // effect for the search bar
   useEffect(() => {
@@ -27,7 +29,7 @@ const App = () => {
       }
     };
     searchingArticles();
-  }, [searchText]);
+  }, [debouncedText]);
 
   // {*/ effect for fetching articles for homepage */}
   useEffect(() => {
