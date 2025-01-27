@@ -8,12 +8,10 @@ import { useDebounce } from "use-debounce";
 const App = () => {
   const [articles, setArticles] = useState([]);
   const [searchText, setsearchText] = useState("");
-  const [debouncedText] = useDebounce(searchText, 2000)
+  const [debouncedText] = useDebounce(searchText, 2000);
 
   // // effect for the search bar
   useEffect(() => {
-    console.log("searching...");
-
     const searchingArticles = async () => {
       try {
         const response = await fetch(
