@@ -6,6 +6,7 @@ import { blogRouter } from "./routes/blogRoute.js";
 import { userAuthentication } from "./middleware/Auth.js";
 import { usersRouter } from "./routes/usersRoute.js";
 import { connectDB } from "./database/config.js";
+import { authRouter } from "./routes/auth.js";
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,6 @@ const port = process.env.PORT;
 
 app.get("/", getHome);
 
-app.use("/api", blogRouter, userAuthentication, usersRouter);
+app.use("/api", authRouter, blogRouter, userAuthentication, usersRouter);
 
 app.listen(port, () => console.log(`server running on ${port}`));
