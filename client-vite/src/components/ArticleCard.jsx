@@ -9,7 +9,7 @@ const ArticleCard = ({ article }) => {
         <img className="w-full" src={image} alt="Blog Image" />
       </div>
       <h2 className="title text-2xl font-semibold">{title}</h2>
-      <p className="description">{content.substring(0, 90)}...</p>
+      <p className="description text-gray-600 font-normal">{content.substring(0, 60)}...</p>
       <div className="flex justify-end">
         <a
           className="readMore flex items-center p-2 hover:shadow-lg duration-150 text-blue-500"

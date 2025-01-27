@@ -18,9 +18,9 @@ const Header = () => {
               </Link>
             </li>
             <li className="border px-2 py-2">
-              <Link to={"/about"} className="flex items-center gap-4 text-lg">
+              <Link to={"/add"} className="flex items-center gap-4 text-lg">
                 <MdKeyboardDoubleArrowRight />
-                About
+                Add Blog
               </Link>
             </li>
             <li className="border px-2 py-2">
