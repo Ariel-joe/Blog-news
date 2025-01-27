@@ -9,6 +9,7 @@ import { Contactpage } from "./pages/Contactpage.jsx";
 import { Newspage } from "./pages/Newspage.jsx";
 import { Login } from "./pages/Auth/login.jsx";
 import { Signup } from "./pages/Auth/Signup.jsx";
+import { Aboutpage } from "./pages/Aboutpage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,7 +20,7 @@ createRoot(document.getElementById("root")).render(
           <Route index element={<Homepage />} />
           <Route path="/contact" element={<Contactpage />} />
           <Route path="/news" element={<Newspage />} />
-          <Route path="/about" element={<Newspage />} />
+          <Route path="/about" element={<Aboutpage />} />
         </Route>
 
         {/* for layout only */}
