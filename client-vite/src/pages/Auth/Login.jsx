@@ -22,7 +22,7 @@ const Login = () => {
         </button>
 
         <span className="flex gap-2">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link
             to={"/signup"}
             className="flex items-center text-blue-700 hover:shadow-md duration-150"
