@@ -1,3 +1,6 @@
+import { GoArrowRight } from "react-icons/go";
+import { Link } from "react-router";
+
 const Login = () => {
   return (
     <>
