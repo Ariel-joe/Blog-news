@@ -1,14 +1,18 @@
-import React from "react";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { CiUser } from "react-icons/ci";
+import { useState } from "react";
 
 const Topbar = () => {
+  const [searchText, setsearchText] = useState("");
+
   return (
     <>
       <div className="topbar flex justify-between px-4 py-4 items-center border-b fixed w-4/5 bg-white">
         <form>
           <input
             type="text"
-            value={searchText}
-            onChange={(e) => setsearchText(e.target.value)}
+            // value={searchText}
+            // onChange={(e) => setsearchText(e.target.value)}
             placeholder="Search blogs..."
             className="border p-2 w-[300px]"
           />

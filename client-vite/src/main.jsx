@@ -19,6 +19,7 @@ createRoot(document.getElementById("root")).render(
           <Route index element={<Homepage />} />
           <Route path="/contact" element={<Contactpage />} />
           <Route path="/news" element={<Newspage />} />
+          <Route path="/about" element={<Newspage />} />
         </Route>
 
         {/* for layout only */}

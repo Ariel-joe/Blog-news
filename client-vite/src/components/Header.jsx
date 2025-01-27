@@ -1,4 +1,5 @@
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { Link } from "react-router";
 
 const Header = () => {
   return (
@@ -10,28 +11,28 @@ const Header = () => {
 
         <ul className="py-14 px-8 space-y-6">
           <li className="border px-2 py-2">
-            <a href="#" className="flex items-center gap-4 text-lg">
+            <Link to={"/"} className="flex items-center gap-4 text-lg">
               <MdKeyboardDoubleArrowRight />
               Homepage
-            </a>
+            </Link>
           </li>
           <li className="border px-2 py-2">
-            <a href="#" className="flex items-center gap-4 text-lg">
+            <Link to={"/about"} className="flex items-center gap-4 text-lg">
               <MdKeyboardDoubleArrowRight />
               About
-            </a>
+            </Link>
           </li>
           <li className="border px-2 py-2">
-            <a href="#" className="flex items-center gap-4 text-lg">
+            <Link to={"/news"} className="flex items-center gap-4 text-lg">
               <MdKeyboardDoubleArrowRight />
               News
-            </a>
+            </Link>
           </li>
           <li className="border px-2 py-2">
-            <a href="#" className="flex items-center gap-4 text-lg">
+            <Link to={"/contact"} className="flex items-center gap-4 text-lg">
               <MdKeyboardDoubleArrowRight />
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
