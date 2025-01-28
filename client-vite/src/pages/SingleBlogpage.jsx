@@ -19,7 +19,7 @@ const SingleBlogpage = () => {
       } catch (error) {
         console.log(error.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
 
@@ -32,19 +32,18 @@ const SingleBlogpage = () => {
         <div>Loading</div>
       ) : (
         <div className="my-3 flex flex-col justify-center items-center">
-          <div className="flex justify-center space-x-9 items-center">
-            <div>
-              <h1 className="text-4xl font-bold mb-3 underline">
-                {article.title}
-              </h1>
-              <h3 className="text-2xl font-semibold mb-3">
-                {article.description}
-              </h3>
-            </div>
-            <img src={article.image} className="w-[40%] mb-3" alt="" />
-          </div>
+          <h1 className="text-4xl font-bold mb-3 underline">{article.title}</h1>
+          <img src={article.image} className="w-[40%] mb-3" alt="" />
 
-          <p className="w-[50%] text-justify">{article.content}</p>
+          <h3 className="text-2xl font-semibold mb-3">{article.description}</h3>
+
+          <p className="w-[70%] text-justify">
+            {article.content.split("\n").map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </p>
         </div>
       )}
     </>
