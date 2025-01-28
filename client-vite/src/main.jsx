@@ -10,6 +10,7 @@ import { Login } from "./pages/Auth/login.jsx";
 import { Signup } from "./pages/Auth/Signup.jsx";
 import { AddBlogpage } from "./pages/AddBlogpage.jsx";
 import { AuthLayout } from "./pages/Auth/AuthLayout.jsx";
+import { SingleBlogpage } from "./pages/SingleBlogpage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,11 @@ createRoot(document.getElementById("root")).render(
         <Route element={<AuthLayout />}>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+        </Route>
+
+        {/* layout for an opened blog */}
+        <Route path="/article/:id" element={<SingleBlogpage />}>
+          
         </Route>
       </Routes>
     </BrowserRouter>

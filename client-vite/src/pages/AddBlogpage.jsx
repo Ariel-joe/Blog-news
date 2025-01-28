@@ -15,8 +15,8 @@ const AddBlogpage = () => {
         title,
         description,
         image,
-        content
-      }
+        content,
+      };
 
       const response = await fetch("http://localhost:8080/api/blogs", {
         method: "POST",
@@ -46,13 +46,12 @@ const AddBlogpage = () => {
         className="w-[90%] sm:w-2/3 max-w-[650px] mx-auto"
       >
         <div className="flex items-center justify-between mb-6">
-        <h1 className="font-semibold">Add Article:</h1>
-        <Link to={"/"}>
-        <button className=" text-white bg-gray-600 text-sm  border border-black mt-1 w-full py-2 px-2">
-          Go to Home
-        </button>
-        </Link>
-
+          <h1 className="font-semibold">Add Article:</h1>
+          <Link to={"/"}>
+            <button className=" text-white bg-gray-600 text-sm  border border-black mt-1 w-full py-2 px-2">
+              Go to Home
+            </button>
+          </Link>
         </div>
         <input
           value={title}
@@ -92,8 +91,6 @@ const AddBlogpage = () => {
         <button type="submit" className="bg-black text-white w-full py-2">
           Add blog
         </button>
-
-
       </form>
     </>
   );
