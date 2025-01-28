@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 const AddBlogpage = () => {
   const [title, setTitle] = useState("");
@@ -44,13 +45,22 @@ const AddBlogpage = () => {
         onSubmit={submitHandler}
         className="w-[90%] sm:w-2/3 max-w-[650px] mx-auto"
       >
-        <h1 className="mb-6 font-semibold">Add Article:</h1>
+        <div className="flex items-center justify-between mb-6">
+        <h1 className="font-semibold">Add Article:</h1>
+        <Link to={"/"}>
+        <button className=" text-white bg-gray-600 text-sm  border border-black mt-1 w-full py-2 px-2">
+          Go to Home
+        </button>
+        </Link>
+
+        </div>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           type="text"
           placeholder="title goes here..."
           className="p-2 border mb-4 border-black w-full"
+          required
         />
         <input
           value={description}
@@ -58,6 +68,7 @@ const AddBlogpage = () => {
           type="text"
           placeholder="description goes here..."
           className="p-2 border mb-4 border-black w-full"
+          required
         />
         <input
           type="text"
@@ -65,6 +76,7 @@ const AddBlogpage = () => {
           onChange={(e) => setImage(e.target.value)}
           placeholder="image link goes here..."
           className="p-2 border mb-4 border-black w-full"
+          required
         />
 
         <textarea
@@ -74,11 +86,14 @@ const AddBlogpage = () => {
           rows={7}
           placeholder="content goes here..."
           className="p-2 border mb-4 border-black w-full"
+          required
         />
 
         <button type="submit" className="bg-black text-white w-full py-2">
           Add blog
         </button>
+
+
       </form>
     </>
   );
