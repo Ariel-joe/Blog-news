@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
+import { useState } from "react";
 
 const AddBlogpage = () => {
   const [title, setTitle] = useState("");
@@ -11,24 +10,24 @@ const AddBlogpage = () => {
     e.preventDefault();
 
     try {
-      const formData = new FormData();
+      const formData = {
+        title,
+        description,
+        image,
+        content
+      }
 
-      formData.append("title", title);
-      formData.append("description", description);
-      formData.append("image", image);
-      formData.append("content", content);
+      const response = await fetch("http://localhost:8080/api/blogs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      const response = await fetch(
-        "http://localhost:8080/api/blogs",
-        formData,
-        {
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
+      const result = await response.json();
 
-      if (response.success) {
+      if (result.success) {
         setTitle("");
         setDescription("");
         setImage("");
@@ -76,11 +75,10 @@ const AddBlogpage = () => {
           placeholder="content goes here..."
           className="p-2 border mb-4 border-black w-full"
         />
-        <Link>
-          <button type="submit" className="bg-black text-white w-full py-2">
-            Add blog
-          </button>
-        </Link>
+
+        <button type="submit" className="bg-black text-white w-full py-2">
+          Add blog
+        </button>
       </form>
     </>
   );
