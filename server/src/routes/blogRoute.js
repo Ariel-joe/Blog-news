@@ -18,7 +18,7 @@ blogRouter
   .patch(userAuthentication, editBlog)
   .delete(userAuthentication, removeBlog);
 
-blogRouter.get("/blogs/single", singleBlog);
+blogRouter.get("/blogs/single/:id", singleBlog);
 
 blogRouter.get("/blogs/search", singleArticleSearch);
 

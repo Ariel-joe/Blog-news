@@ -30,9 +30,9 @@ export const addBlog = async (req, res) => {
 // finding a single blog
 export const singleBlog = async (req, res) => {
   try {
-    const blogId = req.query.id;
+    const blogId = req.params.id;
 
-    const article = await Blog.findOne({ _id: blogId }, req.body);
+    const article = await Blog.findById(blogId);
 
     return res.json({
       succcess: true,
