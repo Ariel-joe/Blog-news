@@ -1,16 +1,37 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 const SingleBlogpage = () => {
+  const [article, setArticle] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/blogs/single/?id=${id}`
+        );
+
+        const result = await response.json();
+
+        console.log(result);
+
+        setArticle(result.data);
+      } catch (error) {}
+    };
+
+    fetchArticle();
+  }, [id]);
+
   return (
     <div>
-        <h1>This is the title of the blog</h1>
-        <img src="" alt="" />
+      <h1>{article.title}</h1>
+      <img src={article.image} alt="" />
 
-        <h3>This is the description of the blog</h3>
-        <p>this is the content of the blog</p>
-      
+      <h3>{article.description}</h3>
+      <p>{article.content}</p>
     </div>
-  )
-}
+  );
+};
 
-export  {SingleBlogpage}
+export { SingleBlogpage };
