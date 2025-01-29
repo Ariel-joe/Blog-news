@@ -2,28 +2,75 @@ import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router";
 
 const Signup = () => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name,
+      phone,
+      email,
+      username,
+      password,
+    };
+
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/signup")
+    } catch (error) {
+      
+    }
+  };
+
   return (
     <>
       <h1 className="text-3xl font-semibold text-center mb-14">
         Create an Account
       </h1>
-      <form className="flex flex-col gap-6">
-        <input type="text" className="p-2 border" placeholder="Enter Name" />
+      <form onSubmit={submitHandler} className="flex flex-col gap-6">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="p-2 border"
+          placeholder="Enter Name"
+        />
 
-        <input type="text" className="p-2 border" placeholder="Enter Phone" />
+        <input
+          type="text"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className="p-2 border"
+          placeholder="Enter Phone"
+        />
 
-        <input type="email" className="p-2 border" placeholder="Enter Email" />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="p-2 border"
+          placeholder="Enter Email"
+        />
 
         <input
           type="text"
           className="p-2 border"
           placeholder="Enter username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
           type="password"
           className="p-2 border"
           placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <button type="submit" className="bg-black text-white p-2">

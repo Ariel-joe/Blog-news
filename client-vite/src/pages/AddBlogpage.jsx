@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router";
 import { toast } from "sonner";
 
 const AddBlogpage = () => {
@@ -28,7 +27,8 @@ const AddBlogpage = () => {
       });
 
       if (response.ok) {
-        const promise = () => new Promise((resolve) => setTimeout(() => resolve(), 2000));
+        const promise = () =>
+          new Promise((resolve) => setTimeout(() => resolve(), 2000));
 
         toast.promise(promise, {
           loading: "Loading...",
@@ -55,11 +55,6 @@ const AddBlogpage = () => {
       >
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-semibold">Add Article:</h1>
-          <Link to={"/"}>
-            <button className=" text-white bg-gray-600 text-sm  border border-black mt-1 w-full py-2 px-2">
-              Go to Home
-            </button>
-          </Link>
         </div>
         <input
           value={title}
