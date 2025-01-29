@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { toast } from "sonner";
 
 const AddBlogpage = () => {
   const [title, setTitle] = useState("");
@@ -27,9 +28,8 @@ const AddBlogpage = () => {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-
-      if (result.ok) {
+      if (response.ok) {
+        toast.success("Article added successfully!")
         setTitle("");
         setDescription("");
         setImage("");
