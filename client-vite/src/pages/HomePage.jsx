@@ -26,7 +26,9 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const response = await fetch("http://localhost:3005/api/blogs");
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs`
+      );
 
       if (response.ok) {
         const { data, success } = await response.json();
