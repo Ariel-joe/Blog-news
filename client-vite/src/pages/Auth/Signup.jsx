@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -7,6 +9,8 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -19,11 +23,25 @@ const Signup = () => {
       password,
     };
 
-
     try {
-      const response = await fetch("http://localhost:8080/api/auth/signup")
+      const response = await fetch("http://localhost:8080/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success("Login Successful");
+
+        navigate("/login");
+      } else {
+        toast.error("something went wrong, please try again!");
+      }
     } catch (error) {
-      
+      error.message;
+      toast.error("something went wrong, please try again!");
     }
   };
 
