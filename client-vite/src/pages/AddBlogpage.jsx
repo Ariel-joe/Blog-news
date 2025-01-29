@@ -9,7 +9,6 @@ const AddBlogpage = () => {
   const [content, setContent] = useState("");
 
   const submitHandler = async (e) => {
-    
     e.preventDefault();
 
     try {
@@ -29,7 +28,15 @@ const AddBlogpage = () => {
       });
 
       if (response.ok) {
-        toast.success("Article added successfully!")
+        const promise = () => new Promise((resolve) => setTimeout(() => resolve(), 2000));
+
+        toast.promise(promise, {
+          loading: "Loading...",
+          success: (data) => {
+            return " Article has been posted successfully ";
+          },
+          error: "Error",
+        });
         setTitle("");
         setDescription("");
         setImage("");
