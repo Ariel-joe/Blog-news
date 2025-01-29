@@ -35,7 +35,6 @@ const App = () => {
 
       <main className="w-4/5 h-full overflow-auto relative">
         <Topbar />
-
         <div className="content px-4 py-4 mt-20">
           <Outlet />
         </div>

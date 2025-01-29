@@ -8,6 +8,7 @@ const AddBlogpage = () => {
   const [content, setContent] = useState("");
 
   const submitHandler = async (e) => {
+    
     e.preventDefault();
 
     try {
@@ -28,7 +29,7 @@ const AddBlogpage = () => {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result.ok) {
         setTitle("");
         setDescription("");
         setImage("");
