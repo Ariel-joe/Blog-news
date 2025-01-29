@@ -1,7 +1,35 @@
 import { User } from "../database/models/user.js";
-import { hash } from "bcrypt";
+import { compare, hash } from "bcrypt";
 
 export const login = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await User.findOne({
+      username,
+    });
+
+    if (!user) {
+      throw new Error("Invalid credentials");
+    }
+
+    const passwordsMatch = await compare(password, user.password);
+
+    if (!passwordsMatch) {
+      throw new Error("Invalid credentials");
+    }
+
+    return res.json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Something Went Wrong.",
+    });
+  }
+
   res.json({
     message: "Login",
   });
@@ -27,8 +55,4 @@ export const signup = async (req, res) => {
       message: error.message,
     });
   }
-
-  res.json({
-    message: "Signup",
-  });
 };
