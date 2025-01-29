@@ -6,16 +6,10 @@ export const signup = async (req, res) => {
 
   const hashedPassword = await hash(password, 10);
 
-  const userData = {
-    name,
-    phone,
-    email,
-    username,
-    hashedPassword,
-  };
+  req.body.password = hashedPassword;
 
   try {
-    const newUser = User.create(userData);
+    const newUser = await User.create(req.body);
 
     return res.json({
       success: true,
