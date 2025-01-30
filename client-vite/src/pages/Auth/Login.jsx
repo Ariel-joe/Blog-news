@@ -35,6 +35,8 @@ const Login = () => {
           },
           error: "Error",
         });
+      } else {
+        toast.error("failed! please try again!");
       }
     } catch (error) {
       toast.error("failed! please try again!");
