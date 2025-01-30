@@ -12,7 +12,7 @@ const Login = () => {
 
     try {
       const formData = {
-        username,
+        username,  
         password,
       };
 
@@ -25,7 +25,8 @@ const Login = () => {
       });
 
       if (response.ok) {
-        const promise = () => new Promise((resolve) => setTimeout(() => resolve(), 2000));
+        const promise = () =>
+          new Promise((resolve) => setTimeout(() => resolve(), 2000));
 
         toast.promise(promise, {
           loading: "Loading...",

@@ -33,7 +33,7 @@ const Signup = () => {
       });
 
       if (response.ok) {
-        toast.success("Login Successful");
+        toast.success("signup Successful");
 
         navigate("/login");
       } else {
