@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router";
+import { toast } from "sonner";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const Login = () => {
         password,
       };
 
-      const response = await fetch("http://localhost:8080/api/auth/signup", {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,21 +25,19 @@ const Login = () => {
       });
 
       if (response.ok) {
-        const promise = () => new Promise((resolve) => setTimeout(() => resolve(), 2000));
+        const promise = () =>
+          new Promise((resolve) => setTimeout(() => resolve(), 2000));
 
         toast.promise(promise, {
           loading: "Loading...",
           success: (data) => {
-            return " Article has been posted successfully ";
+            return " login successfully ";
           },
           error: "Error",
         });
       }
     } catch (error) {
-      return resizeBy.status(500).json({
-        success: false,
-        message: error.message,
-      });
+      toast.error("failed! please try again!");
     }
   };
 
