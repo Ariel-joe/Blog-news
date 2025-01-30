@@ -1,7 +1,21 @@
+import { useEffect, useState } from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
+import { useUser } from "../hooks/use-user";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { removeUser, isLoggedIn } = useUser();
+
+  const handleLogout = () => {
+    removeUser();
+
+    toast.success("Logged out successfully");
+
+    navigate("/login");
+  };
+
   return (
     <header className="w-1/5 h-full overflow-hidden border-r">
       <nav>
@@ -40,16 +54,35 @@ const Header = () => {
           <hr />
 
           <div className="space-y-6">
-            <li className="border px-2 py-2">
-              <Link to={"/login"} className="flex items-center gap-4 text-lg">
-                Login
-              </Link>
-            </li>
-            <li className="border px-2 py-2">
-              <Link to={"/signup"} className="flex items-center gap-4 text-lg">
-                Signup
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li
+                onClick={handleLogout}
+                className="border px-2 py-2 bg-red-500 text-white cursor-pointer"
+              >
+                <button className="flex items-center gap-4 text-lg">
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li className="border px-2 py-2">
+                  <Link
+                    to={"/login"}
+                    className="flex items-center gap-4 text-lg"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li className="border px-2 py-2">
+                  <Link
+                    to={"/signup"}
+                    className="flex items-center gap-4 text-lg"
+                  >
+                    Signup
+                  </Link>
+                </li>
+              </>
+            )}
           </div>
         </ul>
       </nav>

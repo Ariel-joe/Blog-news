@@ -19,6 +19,10 @@ export const login = async (req, res) => {
       throw new Error("Invalid credentials");
     }
 
+    // Generate a JWT Token
+
+    // Add the token in cookie
+
     return res.json({
       success: true,
       data: user,

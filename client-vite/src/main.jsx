@@ -12,6 +12,8 @@ import { LoginPage } from "./pages/auth/LoginPage.jsx";
 import { SignupPage } from "./pages/auth/SignupPage.jsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.jsx";
 import { GlobalLayout } from "./GlobalLayout.jsx";
+import { ProfilePage } from "./pages/protected/ProfilePage.jsx";
+import { ProtectedRouteWrapper } from "./pages/protected/ProtectedRouteWrapper.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -23,6 +25,10 @@ createRoot(document.getElementById("root")).render(
             <Route path="/about" element={<AboutPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+
+            <Route element={<ProtectedRouteWrapper />}>
+              <Route path="/profile" element={<ProfilePage />} />
+            </Route>
           </Route>
 
           <Route element={<AuthLayout />}>

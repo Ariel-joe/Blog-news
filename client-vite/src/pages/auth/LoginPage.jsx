@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
+import { useUser } from "../../hooks/use-user";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { addUser } = useUser();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,11 +31,17 @@ const LoginPage = () => {
         }
       );
 
-      console.log(response);
-
       if (response.ok) {
+        const { data } = await response.json();
+
+        console.log(data);
+
+        addUser(data);
+
         // Login is successful
         toast.success("Login Successful");
+
+        navigate("/profile");
       } else {
         // Login is not successful
         toast.error("Login Not Successful");
