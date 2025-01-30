@@ -7,18 +7,40 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const submithandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
       const formData = {
-        username, password
-      }
+        username,
+        password,
+      };
 
-      const response = await fetch("")
+      const response = await fetch("http://localhost:8080/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const promise = () => new Promise((resolve) => setTimeout(() => resolve(), 2000));
+
+        toast.promise(promise, {
+          loading: "Loading...",
+          success: (data) => {
+            return " Article has been posted successfully ";
+          },
+          error: "Error",
+        });
+      }
     } catch (error) {
-      
+      return resizeBy.status(500).json({
+        success: false,
+        message: error.message,
+      });
     }
-  }
+  };
 
   return (
     <>
