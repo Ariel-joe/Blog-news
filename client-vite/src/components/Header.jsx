@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useUser } from "../hooks/use-user";
+import { useUserStore } from "../store/user-store";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { removeUser, isLoggedIn } = useUser();
+  const { isLoggedIn, logout } = useUserStore();
 
   const handleLogout = () => {
-    removeUser();
+    logout();
 
     toast.success("Logged out successfully");
 
@@ -22,7 +21,6 @@ const Header = () => {
         <div className="logo h-14 flex items-center justify-center">
           <h1 className="text-3xl font-bold">BLOG NEWS</h1>
         </div>
-
         <ul className="py-14 px-8 space-y-12">
           <div className="space-y-6">
             <li className="border px-2 py-2">
