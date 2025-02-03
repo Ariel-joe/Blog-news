@@ -1,6 +1,7 @@
 import { compare, hash } from "bcrypt";
 import { User } from "../database/models/user.js";
 
+// signup function
 export const signup = async (req, res) => {
   const { password } = req.body;
 
@@ -23,6 +24,7 @@ export const signup = async (req, res) => {
   }
 };
 
+// login function
 export const login = async (req, res) => {
   const { username, password } = req.body;
 
