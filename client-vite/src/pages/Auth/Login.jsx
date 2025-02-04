@@ -1,22 +1,32 @@
 import { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
+import { useUserStore } from "../../store/user-store";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useUserStore();
+  const navigate = useNavigate()
 
   const submithandler = async (e) => {
     e.preventDefault();
 
     try {
       const formData = {
-        username,  
+        username,
         password,
       };
 
-      
+      const loginSuccess = await login(formData);
+
+      if(loginSuccess) {
+        toast.success('login successful')
+        navigate("/profile")
+      } else {
+        toast.error("there was a problem login in. Please try again")
+      }
     } catch (error) {
       toast.error("failed! please try again!");
     }
