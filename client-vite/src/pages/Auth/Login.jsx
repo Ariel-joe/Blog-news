@@ -16,28 +16,7 @@ const Login = () => {
         password,
       };
 
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const promise = () =>
-          new Promise((resolve) => setTimeout(() => resolve(), 2000));
-
-        toast.promise(promise, {
-          loading: "Loading...",
-          success: () => {
-            return " login successfully ";
-          },
-          error: "Error",
-        });
-      } else {
-        toast.error("failed! please try again!");
-      }
+      
     } catch (error) {
       toast.error("failed! please try again!");
     }
