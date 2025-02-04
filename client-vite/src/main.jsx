@@ -12,6 +12,8 @@ import { AddBlogpage } from "./pages/AddBlogpage.jsx";
 import { AuthLayout } from "./pages/Auth/AuthLayout.jsx";
 import { SingleBlogpage } from "./pages/SingleBlogpage.jsx";
 import { GlobalLayout } from "./pages/GlobalLayout.jsx";
+import { ProtectedRouteWrapper } from "./pages/protected/ProtectedRouteWrapper.jsx";
+import { Profilepage } from "./pages/protected/Profilepage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -24,6 +26,11 @@ createRoot(document.getElementById("root")).render(
             <Route path="/contact" element={<Contactpage />} />
             <Route path="/news" element={<Newspage />} />
             <Route path="/add" element={<AddBlogpage />} />
+
+            {/* protected routes */}
+            <Route element={<ProtectedRouteWrapper />}>
+              <Route path="/profile" element={<Profilepage />} />
+            </Route>
           </Route>
 
           {/* for layout only */}
