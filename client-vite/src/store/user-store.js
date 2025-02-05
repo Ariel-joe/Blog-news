@@ -23,12 +23,9 @@ const useUserStore = create((set) => ({
         return false;
       }
     } catch (error) {
-      console.error(error.message);
-
       return false;
     }
   },
-
   logout: () => {
     set({ user: null, isLoggedIn: false });
   },

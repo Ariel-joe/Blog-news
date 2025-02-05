@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 import { useUserStore } from "../../store/user-store";
+import { toast } from "sonner";
 
 const ProtectedRouteWrapper = () => {
-  const { isLoggedIn } = useUserStore;
+  const { isLoggedIn } = useUserStore();
   const navigate = useNavigate();
 
   useEffect(() => {

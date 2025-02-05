@@ -1,6 +1,7 @@
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const Topbar = () => {
   const [searchText, setsearchText] = useState("");
@@ -23,7 +24,9 @@ const Topbar = () => {
             <IoIosNotificationsOutline size={25} />
           </span>
           <span className="profile border rounded-full p-2 cursor-pointer hover:shadow-lg duration-150">
-            <CiUser size={25} />
+            <Link to={"/profile"}>
+              <CiUser size={25} />
+            </Link>
           </span>
         </div>
       </div>
