@@ -20,6 +20,18 @@ export const login = async (req, res) => {
     }
 
     // Generate a JWT Token
+    const { _id } = user;
+
+    const jwtInfo = {
+      _id,
+    };
+
+    // Sign the JWT using the secret key in the env
+    const token = jwt.sign(jwtInfo, process.env.JWT_SECRET, {
+      expiresIn: 24 * 60 * 60,
+    });
+
+    console.log({ token });
 
     // Add the token in cookie
 
