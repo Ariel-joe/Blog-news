@@ -13,6 +13,7 @@ const useUserStore = create((set) => ({
             "Content-Type": "application/json",
           },
           body: JSON.stringify(userData),
+          credentials: "include",
         }
       );
 

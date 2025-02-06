@@ -7,15 +7,24 @@ import { userAuthentication } from "./middleware/Auth.js";
 import { usersRouter } from "./routes/usersRoute.js";
 import { connectDB } from "./database/config.js";
 import { authRouter } from "./routes/auth.js";
+import cookieParser from "cookie-parser";
+import { parseCookie } from "./middleware/cookie-parser.js";
 
 const app = express();
 app.use(express.json());
 
-const corsOptions = {
-  origin: "*",
-};
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
-app.use(cors(corsOptions));
+// Third party cookie-parser middleware
+// app.use(cookieParser()); // Calls the factory function to get the middleware
+
+// Custom option to parse the cookies
+app.use(parseCookie); // Passes the middleware function directly
 
 connectDB();
 
