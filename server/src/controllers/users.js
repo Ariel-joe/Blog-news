@@ -1,5 +1,7 @@
 export const getUsers = (req, res) => {
-    res.json({
-        message: "this are all the users"
-    })
-}
+  console.log({ UserFromReq: req.user });
+
+  res.json({
+    message: "this are all the users",
+  });
+};

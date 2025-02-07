@@ -21,10 +21,10 @@ app.use(
 );
 
 // Third party cookie-parser middleware
-// app.use(cookieParser()); // Calls the factory function to get the middleware
+app.use(cookieParser()); // Calls the factory function to get the middleware
 
 // Custom option to parse the cookies
-app.use(parseCookie); // Passes the middleware function directly
+// app.use(parseCookie); // Passes the middleware function directly
 
 connectDB();
 

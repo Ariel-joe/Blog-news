@@ -3,8 +3,6 @@ import { compare, hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
-  console.log("Cookies in req:", req.cookies);
-
   const { username, password } = req.body;
 
   try {
@@ -34,8 +32,6 @@ export const login = async (req, res) => {
       expiresIn: 24 * 60 * 60,
     });
 
-    console.log({ token });
-
     // Add the token in cookie
     res.cookie(process.env.AUTH_COOKIE_NAME, token, {
       maxAge: 24 * 60 * 60 * 1000,
@@ -52,28 +48,16 @@ export const login = async (req, res) => {
       // maxAge = how long the cookie is valid for in milliseconds
     });
 
-    res.cookie("test_cookie", "This is a test cookie", {
-      maxAge: 24 * 60 * 60 * 1000,
-      secure: false,
-      sameSite: "lax",
-    });
-
     return res.json({
       success: true,
       data: user,
     });
   } catch (error) {
-    console.log({ error });
-
     return res.status(500).json({
       success: false,
       message: error.message || "Something Went Wrong.",
     });
   }
-
-  res.json({
-    message: "Login",
-  });
 };
 
 export const signup = async (req, res) => {
