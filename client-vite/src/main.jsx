@@ -14,6 +14,8 @@ import { AuthLayout } from "./pages/auth/AuthLayout.jsx";
 import { GlobalLayout } from "./GlobalLayout.jsx";
 import { ProfilePage } from "./pages/protected/ProfilePage.jsx";
 import { ProtectedRouteWrapper } from "./pages/protected/ProtectedRouteWrapper.jsx";
+import { UsersPage } from "./pages/admin/UsersPage.jsx";
+import { AdminRoutesWrapper } from "./pages/admin/AdminRoutesWrapper.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -28,6 +30,10 @@ createRoot(document.getElementById("root")).render(
 
             <Route element={<ProtectedRouteWrapper />}>
               <Route path="/profile" element={<ProfilePage />} />
+
+              <Route element={<AdminRoutesWrapper />}>
+                <Route path="/users" element={<UsersPage />} />
+              </Route>
             </Route>
           </Route>
 

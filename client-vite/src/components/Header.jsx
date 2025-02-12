@@ -5,7 +5,7 @@ import { useUserStore } from "../store/user-store";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, logout } = useUserStore();
+  const { isLoggedIn, logout, user } = useUserStore();
 
   const handleLogout = () => {
     logout();
@@ -47,6 +47,15 @@ const Header = () => {
                 Contact
               </Link>
             </li>
+
+            {user?.role === "admin" && (
+              <li className="border px-2 py-2">
+                <Link to={"/users"} className="flex items-center gap-4 text-lg">
+                  <MdKeyboardDoubleArrowRight />
+                  Users
+                </Link>
+              </li>
+            )}
           </div>
 
           <hr />
