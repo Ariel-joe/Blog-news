@@ -10,8 +10,6 @@ export const userAuthentication = async (req, res, next) => {
 
     // Beyond this point, means the token has been set in the cookie
 
-    console.log({ token });
-
     // Verify the token
     const payload = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -34,14 +32,11 @@ export const userAuthentication = async (req, res, next) => {
   }
 };
 
-//   const username = req.body.username;
-//   const user = { name: username };
-//   const accessToken = jwt.sign(user, process.env.SECRET_TOKEN);
-//    const authHeader = req.headers["authorization"];
-//   const token = authHeader && authHeader.split(" ")[1];
-//   if (token === null) return res.Status(401);
-//   jwt.verify(token, process.env.SECRET_TOKEN, (err, user) => {
-//     if (err) return res.Status(403);
-//     req.user = user;
-//     next();
-//   });
+export const isAdmin = async (req, res, next) => {
+  if (req.user.role !== "admin")
+    return res.status(401).json({
+      message: "Not Authorized",
+    });
+
+  next();
+};

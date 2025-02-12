@@ -3,7 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import { getHome } from "./controllers/home.js";
 import { blogRouter } from "./routes/blogRoute.js";
-import { userAuthentication } from "./middleware/Auth.js";
+import { isAdmin, userAuthentication } from "./middleware/Auth.js";
 import { usersRouter } from "./routes/usersRoute.js";
 import { connectDB } from "./database/config.js";
 import { authRouter } from "./routes/auth.js";
@@ -32,6 +32,13 @@ const port = process.env.PORT;
 
 app.get("/", getHome);
 
-app.use("/api", authRouter, blogRouter, userAuthentication, usersRouter);
+app.use(
+  "/api",
+  authRouter,
+  blogRouter,
+  userAuthentication,
+  isAdmin,
+  usersRouter
+);
 
 app.listen(port, () => console.log(`server running on ${port}`));
