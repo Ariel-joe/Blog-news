@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { logout, isLoggedIn } = useUserStore();
+  const { logout, isLoggedIn, user } = useUserStore();
 
   const handleLogout = () => {
     logout();
@@ -35,12 +35,14 @@ const Header = () => {
                 Add Blog
               </Link>
             </li>
-            <li className="border px-2 py-2">
-              <Link to={"/news"} className="flex items-center gap-4 text-lg">
-                <MdKeyboardDoubleArrowRight />
-                News
-              </Link>
-            </li>
+            {user?.role === "admin" && (
+              <li className="border px-2 py-2">
+                <Link to={"/users"} className="flex items-center gap-4 text-lg">
+                  <MdKeyboardDoubleArrowRight />
+                  Users
+                </Link>
+              </li>
+            )}
             <li className="border px-2 py-2">
               <Link to={"/contact"} className="flex items-center gap-4 text-lg">
                 <MdKeyboardDoubleArrowRight />

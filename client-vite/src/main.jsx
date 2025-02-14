@@ -15,6 +15,7 @@ import { GlobalLayout } from "./pages/GlobalLayout.jsx";
 import { ProtectedRouteWrapper } from "./pages/protected/ProtectedRouteWrapper.jsx";
 import { Profilepage } from "./pages/protected/Profilepage.jsx";
 import { AdminRoutesWrapper } from "./pages/admin/AdminRoutesWrapper.jsx";
+import { UsersPage } from "./pages/admin/UsersPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -33,9 +34,9 @@ createRoot(document.getElementById("root")).render(
               <Route path="/profile" element={<Profilepage />} />
             </Route>
 
-            {/* protected routes */}
+            {/* admin protected routes */}
             <Route element={<AdminRoutesWrapper />}>
-              <Route path="/profile" element={<Profilepage />} />
+              <Route path="/users" element={<UsersPage />} />
             </Route>
           </Route>
 

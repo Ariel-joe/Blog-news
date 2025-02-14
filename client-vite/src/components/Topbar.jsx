@@ -2,9 +2,11 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import { useState } from "react";
 import { Link } from "react-router";
+import { useUserStore } from "../store/user-store";
 
 const Topbar = () => {
   const [searchText, setsearchText] = useState("");
+  const { isLoggedIn } = useUserStore();
 
   return (
     <>
@@ -23,11 +25,14 @@ const Topbar = () => {
           <span className="notifications border rounded-full p-2 cursor-pointer hover:shadow-lg duration-150">
             <IoIosNotificationsOutline size={25} />
           </span>
-          <span className="profile border rounded-full p-2 cursor-pointer hover:shadow-lg duration-150">
-            <Link to={"/profile"}>
-              <CiUser size={25} />
-            </Link>
-          </span>
+
+          {isLoggedIn && (
+            <span className="profile border rounded-full p-2 cursor-pointer hover:shadow-lg duration-150">
+              <Link to={"/profile"}>
+                <CiUser size={25} />
+              </Link>
+            </span>
+          )}
         </div>
       </div>
     </>
