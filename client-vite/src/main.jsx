@@ -14,6 +14,7 @@ import { SingleBlogpage } from "./pages/SingleBlogpage.jsx";
 import { GlobalLayout } from "./pages/GlobalLayout.jsx";
 import { ProtectedRouteWrapper } from "./pages/protected/ProtectedRouteWrapper.jsx";
 import { Profilepage } from "./pages/protected/Profilepage.jsx";
+import { AdminRoutesWrapper } from "./pages/admin/AdminRoutesWrapper.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -29,6 +30,11 @@ createRoot(document.getElementById("root")).render(
 
             {/* protected routes */}
             <Route element={<ProtectedRouteWrapper />}>
+              <Route path="/profile" element={<Profilepage />} />
+            </Route>
+
+            {/* protected routes */}
+            <Route element={<AdminRoutesWrapper />}>
               <Route path="/profile" element={<Profilepage />} />
             </Route>
           </Route>
